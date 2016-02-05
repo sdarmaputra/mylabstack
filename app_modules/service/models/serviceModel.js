@@ -1,16 +1,18 @@
 var db = require('../../../configs/database');
 var Sequelize = require('sequelize');
-var user = require('../../user/models/userModel');
+var computer = require('../../computer/models/computerModel');
 
-var lab = db.define('lab', {
-	idlab: {
+
+var service = db.define('service', {
+	idservice: {
 		type: Sequelize.INTEGER,
 		allowNull: false,
 		primaryKey: true,
 		autoIncrement: true
 	},
 	name: Sequelize.STRING,
-	description: Sequelize.STRING,
+	description: Sequelize.TEXT,
+	location: Sequelize.STRING,
 	created_at: Sequelize.DATE,
 	updated_at: Sequelize.DATE,
 	created_at: Sequelize.DATE
@@ -21,7 +23,7 @@ var lab = db.define('lab', {
 	deleteAt: 'delete_at'
 });
 
-lab.belongsToMany(user, {through: 'user_has_lab', foreignKey: 'lab_idlab', timestamps: false});
-user.belongsToMany(lab, {through: 'user_has_lab', foreignKey: 'user_iduser', timestamps: false});
+service.belongsTo(computer, {foreignKey: 'computer_idcomputer'});
+computer.hasMany(service, {foreignKey: 'computer_idcomputer'});
 
-module.exports = lab;
+module.exports = service;

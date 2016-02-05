@@ -1,7 +1,8 @@
 var express = require('express');
 var path = require('path');
 var router = express.Router();
-var lab_model = require('../../lab/models/labModel');
+var lab = require('../../lab/models/labModel');
+var user = require('../../user/models/userModel');
 
 var view_dirname = 'lab/views';
 var data = [];
@@ -12,13 +13,13 @@ data.layout = '../base_views/layouts/home_layout';
 
 /* GET home page. */
 router.get('/getLabs', function(req, res, next) {
-	lab_model.findAll().then(function(labs){
-    	res.json(labs);
+	lab.findAll({ include: [user] }).then(function(labs){
+		res.json(labs);	
 	});
 });
 
 router.get('/getLab/:name', function(req, res, next) {
-	lab_model.findOne({ where: {name: req.params.name} }).then(function(lab) {
+	lab.findOne({ where: {name: req.params.name} }).then(function(lab) {
 		res.json(lab);
 	});
 });

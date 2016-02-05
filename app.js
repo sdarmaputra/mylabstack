@@ -14,6 +14,9 @@ var lab = require('./'+config.app_modules_dirname+'/lab/controllers/labControlle
 var category = require('./'+config.app_modules_dirname+'/category/controllers/categoryController');
 var computer = require('./'+config.app_modules_dirname+'/computer/controllers/computerController');
 var home = require('./'+config.app_modules_dirname+'/home/controllers/homeController');
+var service = require('./'+config.app_modules_dirname+'/service/controllers/serviceController');
+var ipRange = require('./'+config.app_modules_dirname+'/ipRange/controllers/ipRangeController');
+var user = require('./'+config.app_modules_dirname+'/user/controllers/userController');
 
 // view engine setup
 app.set('views', path.join(__dirname, config.app_modules_dirname));
@@ -30,6 +33,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //define routes
+app.use('/user', user);
+app.use('/ipRange', ipRange);
+app.use('/service', service);
 app.use('/lab', lab);
 app.use('/category', category);
 app.use('/computer', computer);

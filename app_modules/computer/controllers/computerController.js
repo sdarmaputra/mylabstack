@@ -19,4 +19,10 @@ router.get('/getComputers/:name', function(req, res, next) {
 	});
 });
 
+router.get('/getComputersByCat/:name/:idcategory', function(req, res, next){
+	lab.findOne({ where: {name: req.params.name} , include: [ computer ] }).then(function(lab) {
+		res.json(lab);
+	});
+});
+
 module.exports = router;

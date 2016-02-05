@@ -1,16 +1,16 @@
 var db = require('../../../configs/database');
 var Sequelize = require('sequelize');
-var user = require('../../user/models/userModel');
 
-var lab = db.define('lab', {
-	idlab: {
+var user = db.define('user', {
+	iduser: {
 		type: Sequelize.INTEGER,
 		allowNull: false,
 		primaryKey: true,
 		autoIncrement: true
 	},
-	name: Sequelize.STRING,
-	description: Sequelize.STRING,
+	username: Sequelize.STRING,
+	password: Sequelize.STRING,
+	full_name: Sequelize.STRING,
 	created_at: Sequelize.DATE,
 	updated_at: Sequelize.DATE,
 	created_at: Sequelize.DATE
@@ -21,7 +21,5 @@ var lab = db.define('lab', {
 	deleteAt: 'delete_at'
 });
 
-lab.belongsToMany(user, {through: 'user_has_lab', foreignKey: 'lab_idlab', timestamps: false});
-user.belongsToMany(lab, {through: 'user_has_lab', foreignKey: 'user_iduser', timestamps: false});
 
-module.exports = lab;
+module.exports = user;
