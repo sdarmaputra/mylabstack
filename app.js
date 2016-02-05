@@ -4,18 +4,21 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
-var appmodules_dirname = 'app_modules';
-var base_view_dirname = '../base_view';
-
-//define modules
-var home = require('./'+appmodules_dirname+'/home/controllers/index');
+var hbs = require('hbs');
+var config = require('./configs/config');
 
 var app = express();
 
+//define modules
+var lab = require('./'+config.app_modules_dirname+'/lab/controllers/labController');
+var category = require('./'+config.app_modules_dirname+'/category/controllers/categoryController');
+var computer = require('./'+config.app_modules_dirname+'/computer/controllers/computerController');
+
 // view engine setup
-app.set('views', path.join(__dirname, appmodules_dirname));
+app.set('views', path.join(__dirname, config.app_modules_dirname));
 app.set('view engine', 'hbs');
+hbs.registerPartials(path.join(__dirname, config.base_partial_views_dirname));
+app.engine('hbs', hbs.__express);
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -25,7 +28,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', home);
+//define routes
+app.use('/lab', lab);
+app.use('/category', category);
+app.use('/computer', computer);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -41,7 +47,7 @@ app.use(function(req, res, next) {
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
-    res.render(base_view_dirname+'/error', {
+    res.render(config.base_views_dirname+'/error', {
       message: err.message,
       error: err
     });
@@ -52,7 +58,7 @@ if (app.get('env') === 'development') {
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
-  res.render(base_view_dirname+'/error', {
+  res.render(config.base_views_dirname+'/error', {
     message: err.message,
     error: {}
   });
