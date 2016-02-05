@@ -1,0 +1,62 @@
+<div class="ui container" style="margin-top: 5%;">
+	<div class="ui centered grid">
+		<div class="fourtheen wide column">
+	 		<div class="ui segment">
+		  
+			  	<h2>Monitoring</h2>
+				<h3 id="labName"></h3>
+				<div class="ui divider"></div>
+
+				<div class="ui four column cards" id="computerList">  
+				</div>
+
+		    </div>		  
+		</div>
+	</div>
+</div>
+
+
+<script>
+	var statusHost = [];
+	var i = 0;
+	$.get( "/computer/getComputers/{{ lab }}", function( data ) {
+        $('#labName').html(data.description);
+        for (i = 0; i < data.computers.length; i++) {
+        	$('#computerList').append('<div class="card">' +
+			    '<div class="content">' +
+			      '<img class="right floated mini ui image" src="/images/elliot.jpg">' +
+			      '<div class="header">' +
+			        data.computers[i].ipv4_addr +
+			      '</div>' +
+			      '<div class="meta">' +
+			        '' +
+			      '</div>' +
+			      '<div class="description">' +
+			        data.computers[i].name +
+			      '</div>' +
+			    '</div>' +
+			    '<div class="extra content">' +
+			      '<div class="ui fluid buttons">' +
+			        '<div id="stat'+ i +'" class="ui loading button">&nbsp;</div>' +
+			      '</div>' +
+			    '</div>' +
+			  '</div>');
+
+	        $.when(
+		        $.get( "/ping/"+data.computers[i].ipv4_addr+"/"+i, function( res ) {
+		        	statusHost[res.ip] = res.message;
+		        })
+	        ).done(function( x ) {
+	       		$('#stat'+x.seq).html(x.message);
+	       		if (x.message == 'alive') {
+	       			$('#stat'+x.seq).removeClass();
+	       			$('#stat'+x.seq).addClass('ui basic green button');
+	       		} else {
+	       			$('#stat'+x.seq).removeClass();
+	       			$('#stat'+x.seq).addClass('ui basic red button');
+	       		}
+			});
+		}
+		    
+    });
+</script>

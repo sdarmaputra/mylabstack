@@ -13,6 +13,7 @@ var app = express();
 var lab = require('./'+config.app_modules_dirname+'/lab/controllers/labController');
 var category = require('./'+config.app_modules_dirname+'/category/controllers/categoryController');
 var computer = require('./'+config.app_modules_dirname+'/computer/controllers/computerController');
+var home = require('./'+config.app_modules_dirname+'/home/controllers/homeController');
 
 // view engine setup
 app.set('views', path.join(__dirname, config.app_modules_dirname));
@@ -32,6 +33,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/lab', lab);
 app.use('/category', category);
 app.use('/computer', computer);
+app.use('/', home);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

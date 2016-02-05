@@ -24,5 +24,7 @@ var computer = db.define('computer', {
 
 computer.belongsTo(lab, {foreignKey: 'lab_idlab'});
 computer.belongsTo(category, {foreignKey: 'category_idcategory'});
+lab.hasMany(computer, {foreignKey: 'lab_idlab'});
+category.hasMany(computer, {foreignKey: 'category_idcategory'});
 
 module.exports = computer;
