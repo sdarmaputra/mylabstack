@@ -7,7 +7,7 @@
 				<h3 id="labName"></h3>
 				<div class="ui divider"></div>
 
-				<div class="ui four column cards" id="computerList">  
+				<div class="ui five column cards" id="computerList">  
 				</div>
 
 		    </div>		  
@@ -22,9 +22,9 @@
 	$.get( "/computer/getComputers/{{ lab }}", function( data ) {
         $('#labName').html(data.description);
         for (i = 0; i < data.computers.length; i++) {
-        	$('#computerList').append('<div class="card">' +
+        	$('#computerList').append('<div id="card' + i + '" class="card">' +
 			    '<div class="content">' +
-			      '<img class="right floated mini ui image" src="/images/elliot.jpg">' +
+			      '<img class="right floated mini ui image" src="/images/pc.png">' +
 			      '<div class="header">' +
 			        data.computers[i].ipv4_addr +
 			      '</div>' +
@@ -47,13 +47,18 @@
 		        	statusHost[res.ip] = res.message;
 		        })
 	        ).done(function( x ) {
-	       		$('#stat'+x.seq).html(x.message);
 	       		if (x.message == 'alive') {
+	       			$('#stat'+x.seq).html('<i class="check circle icon"></i> '+x.message);
 	       			$('#stat'+x.seq).removeClass();
 	       			$('#stat'+x.seq).addClass('ui basic green button');
+	       			$('#card'+x.seq).removeClass();
+	       			$('#card'+x.seq).addClass('green card');
 	       		} else {
+	       			$('#stat'+x.seq).html('<i class="remove circle icon"></i> '+x.message);
 	       			$('#stat'+x.seq).removeClass();
 	       			$('#stat'+x.seq).addClass('ui basic red button');
+	       			$('#card'+x.seq).removeClass();
+	       			$('#card'+x.seq).addClass('red card');
 	       		}
 			});
 		}
