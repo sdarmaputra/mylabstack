@@ -20,7 +20,8 @@ router.get('/monitoring/:name', function(req, res, next) {
 });
 
 router.get('/', function(req, res, next) {
-	res.render(path.join(view_dirname, 'index'), data);
+	//res.render(path.join(view_dirname, 'index'), data);
+	res.redirect('/monitoring/ajk');
 });
 
 router.get('/ping/:ip/:seq', function(req, res, next){

@@ -1,15 +1,23 @@
-<div class="ui container" style="margin-top: 5%;">
+<div class="ui visible left demo vertical inverted sidebar labeled icon mySidebar menu">
+	<a class="item">
+		<i class="home icon"></i>
+		Home
+	</a>
+	<a class="item">
+		<i class="block layout icon"></i>
+		Topics
+	</a>
+	<a class="item">
+		<i class="smile icon"></i>
+		Friends
+	</a>
+</div>
+<div class="ui fluid container" style="margin-top: 5%;">
 	<div class="ui centered grid">
-		<div class="fourtheen wide column">
-	 		<div class="ui segment">
-		  
-			  	<h2>Monitoring</h2>
-				<h3 id="labName"></h3>
-				<div class="ui divider"></div>
-
-				<div class="ui five column cards" id="computerList">  
+		<div class="thirteen wide centered column" style="padding-left:5%;">
+	 		<div class="ui tapered segment">
+				<div class="ui six column stackable cards" id="computerList">  
 				</div>
-
 		    </div>		  
 		</div>
 	</div>
@@ -22,7 +30,7 @@
 	$.get( "/computer/getComputers/{{ lab }}", function( data ) {
         $('#labName').html(data.description);
         for (i = 0; i < data.computers.length; i++) {
-        	$('#computerList').append('<div id="card' + i + '" class="card">' +
+        	$('#computerList').append('<div id="card' + i + '" class="tapered card">' +
 			    '<div class="content">' +
 			      '<img class="right floated mini ui image" src="/images/pc.png">' +
 			      '<div class="header">' +
@@ -52,13 +60,13 @@
 	       			$('#stat'+x.seq).removeClass();
 	       			$('#stat'+x.seq).addClass('ui basic green button');
 	       			$('#card'+x.seq).removeClass();
-	       			$('#card'+x.seq).addClass('green card');
+	       			$('#card'+x.seq).addClass('green tapered card');
 	       		} else {
 	       			$('#stat'+x.seq).html('<i class="remove circle icon"></i> '+x.message);
 	       			$('#stat'+x.seq).removeClass();
 	       			$('#stat'+x.seq).addClass('ui basic red button');
 	       			$('#card'+x.seq).removeClass();
-	       			$('#card'+x.seq).addClass('red card');
+	       			$('#card'+x.seq).addClass('red tapered card');
 	       		}
 			});
 		}

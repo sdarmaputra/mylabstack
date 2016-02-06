@@ -1,0 +1,15 @@
+body{
+	background: #FAFAFA !important;
+}
+
+.tapered{
+	border-radius: 0px !important;
+}
+
+.ui.menu.fixed{
+	z-index: 201;
+}
+
+.mySidebar{
+	padding-top: 5%;
+}
