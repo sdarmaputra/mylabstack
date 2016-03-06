@@ -1,0 +1,69 @@
+<div class="ui visible left demo vertical inverted sidebar labeled icon mySidebar menu">
+	<a class="item">
+		<i class="home icon"></i>
+		Home
+	</a>
+	<a class="item">
+		<i class="block layout icon"></i>
+		Topics
+	</a>
+	<a class="item">
+		<i class="smile icon"></i>
+		Friends
+	</a>
+</div>
+<div class="ui fluid container" style="margin-top: 5%;">
+	<div class="ui centered grid">
+		<div class="thirteen wide centered column" style="padding-left:5%;">
+	 		<div class="ui tapered segment">
+				<div class="ui six column stackable cards" id="computerList">
+				</div>
+		    </div>
+		</div>
+	</div>
+</div>
+
+
+<script>
+	var statusHost = [];
+	var i = 0;
+	$.get( "/computer/getComputers/{{ lab }}", function( data ) {
+        $('#labName').html(data.description);
+        for (i = 0; i < data.computers.length; i++) {
+        	$('#computerList').append('<div id="card' + i + '" class="tapered card">' +
+			    '<div class="content">' +
+
+			      '<div class="header">' +
+							'<h3 class="ui header">' + data.computers[i].ipv4_addr +
+			        	'<div class="sub header">' + data.computers[i].name + '</div>' +
+							'</h3>' +
+			      '</div>' +
+						'<div class="description center aligned">' +
+							'<button class="ui circular small basic blue icon button"><i class="server icon"></i></button><div id="stat'+ i +'" class="ui loading circular small button">&nbsp;</div>' +
+			      '</div>' +
+			    '</div>' +
+			  '</div>');
+
+	        $.when(
+		        $.get( "/monitoring/ping/"+data.computers[i].ipv4_addr+"/"+i, function( res ) {
+		        	statusHost[res.ip] = res.message;
+		        })
+	        ).done(function( x ) {
+	       		if (x.message == 'alive') {
+	       			$('#stat'+x.seq).html('<i class="check icon"></i> ');
+	       			$('#stat'+x.seq).removeClass();
+	       			$('#stat'+x.seq).addClass('ui circular small basic green icon button');
+	       			$('#card'+x.seq).removeClass();
+	       			$('#card'+x.seq).addClass('green tapered card');
+	       		} else {
+	       			$('#stat'+x.seq).html('<i class="remove icon"></i> ');
+	       			$('#stat'+x.seq).removeClass();
+	       			$('#stat'+x.seq).addClass('ui circular small basic red icon button');
+	       			$('#card'+x.seq).removeClass();
+	       			$('#card'+x.seq).addClass('red tapered card');
+	       		}
+			});
+		}
+
+    });
+</script>
