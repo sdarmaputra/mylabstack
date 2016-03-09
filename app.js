@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var hbs = require('hbs');
 var fs = require('fs');
 require('./configs/config');
+require('handlebars-form-helpers').register(hbs.handlebars);
 
 var app = express();
 
@@ -32,13 +33,14 @@ app.get('/', function(req, res) {
 app.set('views', config.app_modules_dirname);
 app.set('view engine', 'hbs');
 hbs.registerPartials(config.base_partial_views_dirname);
+hbs.registerPartials(config.app_modules_dirname);
 app.engine('hbs', hbs.__express);
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 

@@ -12,8 +12,7 @@ data.layout = path.join(config.base_layout_dirname, 'home_layout');
 
 /* GET home page. */
 router.get('/:name', function(req, res, next) {
-	data.lab = req.params.name;
-	console.log(data.layout);
+	data.lab = req.params.name;	
 	res.render(path.join(view_dirname, 'monitoring'), data);
 });
 

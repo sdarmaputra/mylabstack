@@ -1,0 +1,20 @@
+{{> monitoring_sidebar}}
+
+<div class="ui fluid container" style="margin-top: 5%;">
+	<div class="ui centered grid">
+		<div class="thirteen wide centered column" style="padding-left:5%;">
+      <h3 class="ui center aligned icon header">
+        <i class="desktop icon"></i>
+        <div class="content">
+          Add New Computer
+        </div>
+      </h3>
+
+			<div class="ui tapered segment" style="margin-top: 2.5%;">
+          {{#form url class="ui form"}}
+            {{> computer/views/form}}
+          {{/form}}
+      </div>
+		</div>
+	</div>
+</div>

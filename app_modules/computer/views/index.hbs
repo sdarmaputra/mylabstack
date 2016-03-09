@@ -1,0 +1,66 @@
+{{> monitoring_sidebar}}
+<div class="ui fluid container" style="margin-top: 5%;">
+	<div class="ui centered grid">
+		<div class="thirteen wide centered column" style="padding-left:5%;">
+      <h3 class="ui center aligned icon header">
+        <i class="desktop icon"></i>
+        <div class="content">
+          Computer List
+          <div class="sub header">Manage your computer list and preferences.</div>
+        </div>
+      </h3>
+
+			<div class="ui one column stackable cards" style="margin-top: 2.5%;">
+        <table class="ui celled table">
+          <thead>
+            <tr>
+              <th>IP Addres</th>
+              <th>Name</th>
+              <th>Lab</th>
+              <th>Category</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each computers}}
+              <tr>
+                <td>{{ this.ipv4_addr }}</td>
+                <td>{{ this.name }}</td>
+                <td>{{ this.lab.name }}</td>
+                <td>{{ this.category.name }}</td>
+                <td>
+                  <a class="ui circular basic green icon button" href="/computer/edit/{{ this.idcomputer }}"><i class="setting icon"></i></a>
+                  <a class="ui circular basic red icon button" href="/computer/destroy/{{ this.idcomputer }}"><i class="trash icon"></i></a>
+                </td>
+              </tr>
+            {{/each}}
+          </tbody>
+          <tfoot>
+            <tr>
+              <th colspan="5">
+                <div class="ui left floated text menu">
+                  <a class="ui compact large labeled blue icon button" href="/computer/create">
+                    <i class="plus icon"></i>
+                    Add New
+                  </a>
+                </div>
+                <div class="ui right floated pagination menu">
+                  <a class="icon item">
+                    <i class="left chevron icon"></i>
+                  </a>
+                  <a class="item">1</a>
+                  <a class="item">2</a>
+                  <a class="item">3</a>
+                  <a class="item">4</a>
+                  <a class="icon item">
+                    <i class="right chevron icon"></i>
+                  </a>
+                </div>
+              </th>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+		</div>
+	</div>
+</div>

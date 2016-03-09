@@ -1,0 +1,20 @@
+<div class="field">
+  {{label "ipv4_addr" "IPv4 Address"}}
+  {{input "ipv4_addr" computer.ipv4_addr placeholder="IP v4 Address"}}
+</div>
+<div class="field">
+  {{label "name" "Computer Name"}}
+  {{input "name" computer.name placeholder="Computer Name"}}
+</div>
+<div class="field">
+  {{label "idlab" "Lab"}}
+  {{input "lab_idlab" computer.lab_idlab placeholder="Lab"}}
+</div>
+<div class="field">
+  {{label "idcategory" "Category"}}
+  {{input "category_idcategory" computer.category_idcategory placeholder="Computer Category"}}
+</div>
+<div class="field">
+  {{submit "submit" "Submit" class="ui large blue icon button"}}
+  <a class="ui large red icon button" href="/computer">Kembali</a>
+</div>

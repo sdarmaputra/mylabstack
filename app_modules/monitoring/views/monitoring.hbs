@@ -1,21 +1,16 @@
-<div class="ui visible left demo vertical inverted sidebar labeled icon mySidebar menu">
-	<a class="item">
-		<i class="home icon"></i>
-		Home
-	</a>
-	<a class="item">
-		<i class="block layout icon"></i>
-		Topics
-	</a>
-	<a class="item">
-		<i class="smile icon"></i>
-		Friends
-	</a>
-</div>
+{{> monitoring_sidebar}}
 <div class="ui fluid container" style="margin-top: 5%;">
 	<div class="ui centered grid">
 		<div class="thirteen wide centered column" style="padding-left:5%;">
-	 		<div class="ui tapered segment">
+			<h3 class="ui center aligned icon header">
+        <i class="desktop icon"></i>
+        <div class="content">
+          Monitoring
+          <div class="sub header">Monitor your infrastructure status and services.</div>
+        </div>
+      </h3>
+
+	 		<div class="ui tapered segment" style="margin-top: 2.5%;">
 				<div class="ui six column stackable cards" id="computerList">
 				</div>
 		    </div>
