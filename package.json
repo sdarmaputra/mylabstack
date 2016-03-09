@@ -16,6 +16,7 @@
     "ping": "^0.1.10",
     "semantic-ui": "^2.1.8",
     "sequelize": "^3.19.1",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "~2.3.0",
+    "handlebars-form-helpers": "~0.1.3"
   }
 }
