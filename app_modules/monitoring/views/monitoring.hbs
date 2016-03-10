@@ -22,7 +22,7 @@
 <script>
 	var statusHost = [];
 	var i = 0;
-	$.get( "/computer/getComputers/{{ lab }}", function( data ) {
+	$.get( "/computer/getComputers/{{ idlab }}", function( data ) {
         $('#labName').html(data.description);
         for (i = 0; i < data.computers.length; i++) {
         	$('#computerList').append('<div id="card' + i + '" class="tapered card">' +

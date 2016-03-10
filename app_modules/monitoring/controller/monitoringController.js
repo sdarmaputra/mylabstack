@@ -11,14 +11,14 @@ data.layout = path.join(config.base_layout_dirname, 'home_layout');
 
 
 /* GET home page. */
-router.get('/:name', function(req, res, next) {
-	data.lab = req.params.name;	
+router.get('/:idlab', function(req, res, next) {
+	data.idlab = req.params.idlab;
 	res.render(path.join(view_dirname, 'monitoring'), data);
 });
 
 router.get('/', function(req, res, next) {
 	//res.render(path.join(view_dirname, 'index'), data);
-	res.redirect('/monitoring/ajk');
+	res.redirect('/monitoring/1');
 });
 
 router.get('/ping/:ip/:seq', function(req, res, next){

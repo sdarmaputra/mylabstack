@@ -24,7 +24,28 @@ router.get('/', function(req, res, next) {
 router.get('/create', function(req, res, next) {
 	data.computer = [];
 	data.url = "/computer/store";
-	res.render(path.join(view_dirname, 'create'), data);
+	lab.findAll().then(function(labs) {
+		data.labs = [];
+		data.labs.push({value: 0, text: '- Select Lab -'});
+		labs.forEach(function(lab, index, arr) {
+			var arrayLab = {};
+			arrayLab['value'] = lab.idlab;
+			arrayLab['text'] = lab.name;
+			data.labs.push(arrayLab);
+		});
+		category.findAll().then(function(categories) {
+			data.categories = [];
+			data.categories.push({value: 0, text: '- Select Category -'});
+			categories.forEach(function(category, index, arr) {
+				var arrayCategory = {};
+				arrayCategory['value'] = category.idcategory;
+				arrayCategory['text'] = category.name;
+				data.categories.push(arrayCategory);
+			});
+			res.render(path.join(view_dirname, 'create'), data);
+		});
+	});
+
 });
 
 router.post('/store', function(req, res, next) {
@@ -54,8 +75,8 @@ router.get('/destroy/:idcomputer', function(req, res, next){
 });
 
 /* GET home page. */
-router.get('/getComputers/:name', function(req, res, next) {
-	lab.findOne({ where: {name: req.params.name} , include: [ computer ] }).then(function(lab) {
+router.get('/getComputers/:idlab', function(req, res, next) {
+	lab.findOne({ where: {idlab: req.params.idlab} , include: [ computer ] }).then(function(lab) {
 		res.json(lab);
 	});
 });

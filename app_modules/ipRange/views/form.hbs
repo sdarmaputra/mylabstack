@@ -1,0 +1,24 @@
+<div class="field">
+  {{label "title" "IP Range Title"}}
+  {{input "title" ipRange.title placeholder="IP Range Title"}}
+</div>
+<div class="field">
+  {{label "description" "IP Range Description"}}
+  {{input "description" ipRange.description placeholder="IP Range Description"}}
+</div>
+<div class="field">
+  {{label "start_ipv4" "IPv4 Start"}}
+  {{input "start_ipv4" ipRange.start_ipv4 placeholder="IPv4 Start"}}
+</div>
+<div class="field">
+  {{label "end_ipv4" "IPv4 End"}}
+  {{input "end_ipv4" ipRange.end_ipv4 placeholder="IPv4 End"}}
+</div>
+<div class="field">
+  {{label "lab_idlab" "Lab"}}
+  {{select "lab_idlab" labs ipRange.lab_idlab}}
+</div>
+<div class="field">
+  {{submit "submit" "Submit" class="ui large blue icon button"}}
+  <a class="ui large red icon button" href="/ipRange">Kembali</a>
+</div>

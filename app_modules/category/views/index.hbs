@@ -5,8 +5,8 @@
       <h3 class="ui center aligned icon header">
         <i class="desktop icon"></i>
         <div class="content">
-          Laboratory List
-          <div class="sub header">Manage your laboratory list and preferences.</div>
+          Category List
+          <div class="sub header">Manage your category list and preferences.</div>
         </div>
       </h3>
 
@@ -14,19 +14,19 @@
         <table class="ui celled table">
           <thead>
             <tr>
-              <th>Lab Name</th>
-              <th>Lab Description</th>
+              <th>Category Name</th>
+              <th>Category Description</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            {{#each labs}}
+            {{#each categories}}
               <tr>
                 <td>{{ this.name }}</td>
                 <td>{{ this.description }}</td>
                 <td>
-                  <a class="ui circular basic green icon button" href="/lab/edit/{{ this.idlab }}"><i class="setting icon"></i></a>
-                  <a class="ui circular basic red icon button" href="/lab/destroy/{{ this.idlab }}"><i class="trash icon"></i></a>
+                  <a class="ui circular basic green icon button" href="/category/edit/{{ this.idcategory }}"><i class="setting icon"></i></a>
+                  <a class="ui circular basic red icon button" href="/category/destroy/{{ this.idcategory }}"><i class="trash icon"></i></a>
                 </td>
               </tr>
             {{/each}}
@@ -35,7 +35,7 @@
             <tr>
               <th colspan="3">
                 <div class="ui left floated text menu">
-                  <a class="ui compact large labeled blue icon button" href="/lab/create">
+                  <a class="ui compact large labeled blue icon button" href="/category/create">
                     <i class="plus icon"></i>
                     Add New
                   </a>

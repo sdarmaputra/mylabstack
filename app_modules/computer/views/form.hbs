@@ -7,12 +7,12 @@
   {{input "name" computer.name placeholder="Computer Name"}}
 </div>
 <div class="field">
-  {{label "idlab" "Lab"}}
-  {{input "lab_idlab" computer.lab_idlab placeholder="Lab"}}
+  {{label "lab_idlab" "Lab"}}
+  {{select "lab_idlab" labs computer.lab_idlab}}
 </div>
 <div class="field">
-  {{label "idcategory" "Category"}}
-  {{input "category_idcategory" computer.category_idcategory placeholder="Computer Category"}}
+  {{label "category_idcategory" "Category"}}
+  {{select "category_idcategory" categories computer.category_idcategory}}
 </div>
 <div class="field">
   {{submit "submit" "Submit" class="ui large blue icon button"}}
