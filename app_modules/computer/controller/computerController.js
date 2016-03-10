@@ -45,7 +45,6 @@ router.get('/create', function(req, res, next) {
 			res.render(path.join(view_dirname, 'create'), data);
 		});
 	});
-
 });
 
 router.post('/store', function(req, res, next) {
@@ -58,7 +57,27 @@ router.get('/edit/:idcomputer', function(req, res, next) {
 	computer.findOne({ where: {idcomputer: req.params.idcomputer} }).then(function(computer) {
 		data.computer = computer;
 		data.url = "/computer/update/"+req.params.idcomputer;
-		res.render(path.join(view_dirname, 'edit'), data);
+		lab.findAll().then(function(labs) {
+			data.labs = [];
+			data.labs.push({value: 0, text: '- Select Lab -'});
+			labs.forEach(function(lab, index, arr) {
+				var arrayLab = {};
+				arrayLab['value'] = lab.idlab;
+				arrayLab['text'] = lab.name;
+				data.labs.push(arrayLab);
+			});
+			category.findAll().then(function(categories) {
+				data.categories = [];
+				data.categories.push({value: 0, text: '- Select Category -'});
+				categories.forEach(function(category, index, arr) {
+					var arrayCategory = {};
+					arrayCategory['value'] = category.idcategory;
+					arrayCategory['text'] = category.name;
+					data.categories.push(arrayCategory);
+				});
+				res.render(path.join(view_dirname, 'edit'), data);
+			});
+		});
 	});
 });
 
