@@ -1,0 +1,20 @@
+<div class="field">
+  {{label "name" "Service Name"}}
+  {{input "name" service.name placeholder="Service Name"}}
+</div>
+<div class="field">
+  {{label "description" "Service Description"}}
+  {{input "description" service.description placeholder="Service Description"}}
+</div>
+<div class="field">
+  {{label "location" "Service Location"}}
+  {{input "location" service.location placeholder="Location/URL to access the service"}}
+</div>
+<div class="field">
+  {{label "computer_idcomputer" "Computer"}}
+  {{select "computer_idcomputer" computers service.computer_idcomputer}}
+</div>
+<div class="field">
+  {{submit "submit" "Submit" class="ui large blue icon button"}}
+  <a class="ui large red icon button" href="/service">Kembali</a>
+</div>

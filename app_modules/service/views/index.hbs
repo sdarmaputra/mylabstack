@@ -3,10 +3,10 @@
 	<div class="ui centered grid">
 		<div class="thirteen wide centered column" style="padding-left:5%;">
       <h3 class="ui center aligned icon header">
-        <i class="lab icon"></i>
+        <i class="rocket icon"></i>
         <div class="content">
-          Laboratory List
-          <div class="sub header">Manage your laboratory list and preferences.</div>
+          Service List
+          <div class="sub header">Manage your service list and preferences.</div>
         </div>
       </h3>
 
@@ -14,28 +14,34 @@
         <table class="ui celled table">
           <thead>
             <tr>
-              <th>Lab Name</th>
-              <th>Lab Description</th>
+              <th>Service Name</th>
+              <th>Service Description</th>
+							<th>Location</th>
+							<th>Computer</th>
+							<th>Laboratory</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            {{#each labs}}
+            {{#each services}}
               <tr>
                 <td>{{ this.name }}</td>
                 <td>{{ this.description }}</td>
+								<td>{{ this.location }}</td>
+								<td>{{ this.computer.ipv4_addr }} ({{ this.computer.name }})</td>
+								<td>{{ this.computer.lab.name }}</td>
                 <td>
-                  <a class="ui circular basic green icon button" href="/lab/edit/{{ this.idlab }}"><i class="setting icon"></i></a>
-                  <a class="ui circular basic red icon button" href="/lab/destroy/{{ this.idlab }}"><i class="trash icon"></i></a>
+                  <a class="ui circular basic green icon button" href="/service/edit/{{ this.idservice }}"><i class="setting icon"></i></a>
+                  <a class="ui circular basic red icon button" href="/service/destroy/{{ this.idservice }}"><i class="trash icon"></i></a>
                 </td>
               </tr>
             {{/each}}
           </tbody>
           <tfoot>
             <tr>
-              <th colspan="3">
+              <th colspan="6">
                 <div class="ui left floated text menu">
-                  <a class="ui compact large labeled blue icon button" href="/lab/create">
+                  <a class="ui compact large labeled blue icon button" href="/service/create">
                     <i class="plus icon"></i>
                     Add New
                   </a>
